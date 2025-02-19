@@ -11,6 +11,7 @@ const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const authController = require('./controllers/auth.js');
+const foodsController = require('./controllers/foods.js');
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -39,7 +40,13 @@ app.get('/', (req, res) => {
   });
 });
 
+
+
 app.use('/auth', authController);
+app.use(isSignedIn);
+app.use('/users/:userId/foods', foodsController);
+
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
