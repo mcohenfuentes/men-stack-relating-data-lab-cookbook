@@ -7,4 +7,12 @@ router.get('/', (req, res) => {
     res.render('foods/index.ejs');
   });
 
+  router.get('/new', (req, res) => {
+    res.render('foods/new.ejs');
+  });
+
+  router.post('/', (req, res) => {
+    const user = req.session.user 
+})
+
 module.exports = router;
