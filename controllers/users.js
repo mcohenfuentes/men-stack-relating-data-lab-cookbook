@@ -5,20 +5,25 @@ const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
     try {
-     
-      const allUsers = await User.find();
-      console.log(allUsers)
-   
-      res.render('users/index.ejs', {
-        users: allUsers,
-      });
+        const allUsers = await User.find();
+        res.render('users/index.ejs', { users: allUsers });
     } catch (error) {
-      // If any errors, log them and redirect back home
-      console.log(error);
-      res.redirect('/');
+        console.log(error);
+        res.redirect('/');
     }
-  });
+});
 
+
+router.get('/:userId', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId);
+
+        res.render('users/show.ejs', { user, foods: user.foods }); // Pass user data to show.ejs
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
 
 
 module.exports = router;

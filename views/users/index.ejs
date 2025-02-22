@@ -6,13 +6,13 @@
     <title>Users Index</title>
   </head>
   <body>
-    <a href="/foods/users">All users</a>
+   
     <%- include('../partials/_navbar.ejs') %>
-    <h1>All Users</h1>
+   
     <ul>
-        <% users.forEach(user => { %>
-            <li><a href="/users/<%= user._id %>"><%= user.username %></a></li>
-          <!-- <% }) %> -->
+        <% users.forEach(communityUser => { %>
+            <li><a href="/users/<%= user._id %>/users/<%= communityUser._id %>"><%= communityUser.username %></a></li>
+          <% }) %>
       </ul>
   </body>
 </html>
